@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${Righteous.variable} ${ptSans.variable} antialiased bg-bg`}
+        className={`${Righteous.variable} ${ptSans.variable} antialiased bg-bg overflow-hidden`}
       >
         {children}
       </body>

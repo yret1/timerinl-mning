@@ -5,17 +5,23 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface NavProps {
   setType: React.Dispatch<React.SetStateAction<"Analog" | "Digital" | "Text">>;
+  typeCurrent: "Analog" | "Digital" | "Text";
 }
 
-const Nav: React.FC<NavProps> = ({ setType }) => {
+const Nav: React.FC<NavProps> = ({ setType, typeCurrent }) => {
   const navItems = ["ANALOG TIMER", "DIGITAL TIMER", "TEXT TIMER"];
 
   const type = ["Analog", "Digital", "Text"];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const updateClocktype = (index: number) => {
+    setType(type[index] as "Analog" | "Digital" | "Text");
+    setIsMenuOpen(false);
+  };
+
   return (
-    <header className="w-full p-4 flex justify-start relative items-center">
+    <header className="w-full p-4 flex justify-end relative items-center">
       <button
         className="fixed top-5 left-5 z-50"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -60,6 +66,9 @@ const Nav: React.FC<NavProps> = ({ setType }) => {
           />
         </svg>
       </button>
+      <p className="text-primary font pt-2 px-5 font-bold text-2xl">
+        {typeCurrent.toLocaleUpperCase() + " CLOCK"}
+      </p>
       <AnimatePresence>
         {isMenuOpen && (
           <motion.nav
@@ -71,9 +80,7 @@ const Nav: React.FC<NavProps> = ({ setType }) => {
             <ul className="w-screen flex flex-col justify-center items-center gap-4 h-full font-sans text-2xl font-bold">
               {navItems.map((item, index) => (
                 <li
-                  onClick={() =>
-                    setType(type[index] as "Analog" | "Digital" | "Text")
-                  }
+                  onClick={() => updateClocktype(index as 0 | 1 | 2)}
                   key={index}
                 >
                   <a href="#">{item}</a>
