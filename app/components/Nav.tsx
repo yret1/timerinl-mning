@@ -3,20 +3,21 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Nav = () => {
-  const navItems = [
-    "ANALOG TIMER",
-    "DIGITAL TIMER",
-    "VISUAL TIMER",
-    "TEXT TIMER",
-    "CIRCLES TIMER",
-  ];
+interface NavProps {
+  setType: React.Dispatch<React.SetStateAction<"Analog" | "Digital" | "Text">>;
+}
+
+const Nav: React.FC<NavProps> = ({ setType }) => {
+  const navItems = ["ANALOG TIMER", "DIGITAL TIMER", "TEXT TIMER"];
+
+  const type = ["Analog", "Digital", "Text"];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className="w-full p-4 flex justify-start relative items-center">
       <button
-        className="absolute top-5 left-5 z-50"
+        className="fixed top-5 left-5 z-50"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <svg
@@ -65,11 +66,16 @@ const Nav = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="top-0 left-0 absolute z-40 w-screen h-screen bg-landing pt-32 text-bg"
+            className="top-0 left-0 fixed z-40 w-screen h-screen bg-landing pt-32 text-bg"
           >
             <ul className="w-screen flex flex-col justify-center items-center gap-4 h-full font-sans text-2xl font-bold">
               {navItems.map((item, index) => (
-                <li key={index}>
+                <li
+                  onClick={() =>
+                    setType(type[index] as "Analog" | "Digital" | "Text")
+                  }
+                  key={index}
+                >
                   <a href="#">{item}</a>
                 </li>
               ))}
