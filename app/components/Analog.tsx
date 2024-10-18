@@ -7,15 +7,8 @@ interface AnalogProps {
   startMinutes: number;
 }
 
-const Analog: React.FC<AnalogProps> = ({ secondsLeft, startMinutes }) => {
-  const [minutes, setMinutes] = useState<number>(0);
-  const [seconds, setSeconds] = useState<number>(0);
+const Analog: React.FC<AnalogProps> = ({ startMinutes }) => {
   const [startingMinutes, setStartingMinutes] = useState<number>(0);
-
-  useEffect(() => {
-    setMinutes(Math.floor(secondsLeft / 60));
-    setSeconds(secondsLeft % 60);
-  }, [secondsLeft]);
 
   useEffect(() => {
     setStartingMinutes(startMinutes);
