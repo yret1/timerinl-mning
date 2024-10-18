@@ -78,7 +78,7 @@ const Text: React.FC<AnalogProps> = ({ secondsLeft }) => {
       59: "Femtionio",
       60: "Sextio",
     };
-    return num <= 12 ? swedishNumbers[num] : num.toString();
+    return swedishNumbers[num];
   };
 
   // Format the remaining time in Swedish
