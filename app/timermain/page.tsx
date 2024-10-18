@@ -11,7 +11,7 @@ import Breakscreen from "../components/Breakscreen";
 import { motion } from "framer-motion";
 
 const Page = () => {
-  const [minutes, setMinutes] = useState<number>(0.1);
+  const [minutes, setMinutes] = useState<number>(5);
   const [timerActive, setTimerActive] = useState<boolean>(false);
   const [isInterval, setIsInterval] = useState<boolean>(false);
   const [breakActive, setBreakActive] = useState<boolean>(false);
@@ -79,6 +79,7 @@ const Page = () => {
   }, [timerActive, breakActive, timeInSeconds, isInterval, intervalTime]);
 
   useEffect(() => {
+    setIntervalTime(5);
     if (minutes !== 0) {
       setTimeInSeconds(minutes * 60);
     }

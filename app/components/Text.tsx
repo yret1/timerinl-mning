@@ -83,8 +83,8 @@ const Text: React.FC<AnalogProps> = ({ secondsLeft }) => {
 
   // Format the remaining time in Swedish
   const formatTimeToSwedish = (): string => {
-    let minuteText = minutes > 1 ? "minuter" : "minut";
-    let secondText = seconds > 1 ? "sekunder" : "sekund";
+    const minuteText = minutes > 1 ? "minuter" : "minut";
+    const secondText = seconds > 1 ? "sekunder" : "sekund";
 
     const minuteWord = numberToSwedish(minutes);
     const secondWord =
