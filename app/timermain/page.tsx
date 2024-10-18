@@ -114,7 +114,7 @@ const Page = () => {
         {!timerActive && !timerFinished && (
           <motion.section
             layout
-            className="flex w-full gap-1 justify-center flex-col items-center"
+            className="flex w-full gap-1 justify-center flex-col pb-20 items-center z-50"
           >
             <section className="flex justify-between items-center gap-2 w-full">
               <motion.svg

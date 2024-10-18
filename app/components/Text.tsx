@@ -87,8 +87,7 @@ const Text: React.FC<AnalogProps> = ({ secondsLeft }) => {
     const secondText = seconds > 1 ? "sekunder" : "sekund";
 
     const minuteWord = numberToSwedish(minutes);
-    const secondWord =
-      seconds <= 12 ? numberToSwedish(seconds) : seconds.toString();
+    const secondWord = numberToSwedish(seconds);
 
     return `${minutes !== 0 ? minuteWord + " " + minuteText : ""} ${
       minutes == 0 || seconds == 0 ? "" : "och"
