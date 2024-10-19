@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 interface AnalogProps {
-  secondsLeft: number;
   startMinutes: number;
+  secondsLeft?: number;
 }
 
 const Analog: React.FC<AnalogProps> = ({ startMinutes }) => {

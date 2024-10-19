@@ -4,14 +4,21 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavProps {
-  setType: React.Dispatch<React.SetStateAction<"Analog" | "Digital" | "Text">>;
-  typeCurrent: "Analog" | "Digital" | "Text";
+  setType: React.Dispatch<
+    React.SetStateAction<"Analog" | "Digital" | "Text" | "Circle">
+  >;
+  typeCurrent: "Analog" | "Digital" | "Text" | "Circle";
 }
 
 const Nav: React.FC<NavProps> = ({ setType, typeCurrent }) => {
-  const navItems = ["ANALOG TIMER", "DIGITAL TIMER", "TEXT TIMER"];
+  const navItems = [
+    "ANALOG TIMER",
+    "DIGITAL TIMER",
+    "TEXT TIMER",
+    "CIRCLE TIMER",
+  ];
 
-  const type = ["Analog", "Digital", "Text"];
+  const type = ["Analog", "Digital", "Text", "Circle"];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
