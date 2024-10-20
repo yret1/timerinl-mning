@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import Circles from "../components/Circles";
 
 const Page = () => {
+  //States
   const [minutes, setMinutes] = useState<number>(5);
   const [timerActive, setTimerActive] = useState<boolean>(false);
   const [isInterval, setIsInterval] = useState<boolean>(false);
@@ -23,6 +24,7 @@ const Page = () => {
   const [timeInSeconds, setTimeInSeconds] = useState<number>(minutes * 60);
   const [intervalTime, setIntervalTime] = useState<number>(5);
 
+  //Start timer function
   const startTimer = useCallback(() => {
     if (timerActive) {
       setTimerActive(false);
@@ -35,6 +37,7 @@ const Page = () => {
     }
   }, [timerActive, minutes]);
 
+  //Timer logic
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
@@ -66,6 +69,8 @@ const Page = () => {
         setTimeInSeconds(minutes * 60);
       }
     }
+
+    //If break, handle break logic
     if (breakActive && timeInSeconds > 0) {
       interval = setInterval(() => {
         setTimeInSeconds((prev) => prev - 1);
@@ -73,10 +78,10 @@ const Page = () => {
     } else if (breakActive && timeInSeconds === 0) {
       setBreakActive(false);
       setTimerActive(true);
-      setTimeInSeconds(minutes * 60); // set time to minutes user selected
+      setTimeInSeconds(minutes * 60); // reset time to minutes user selected
     }
 
-    return () => clearInterval(interval); //Cleanup intervals
+    return () => clearInterval(interval); //Cleanup interval
   }, [timerActive, breakActive, timeInSeconds, isInterval, intervalTime]);
 
   useEffect(() => {
@@ -86,6 +91,7 @@ const Page = () => {
     }
   }, [minutes]);
 
+  //Change minutes block excesive time or too low time
   const changeMinutes = (type: string) => {
     if (type === "increment") {
       if (minutes < 60) {
@@ -102,6 +108,7 @@ const Page = () => {
     }
   };
 
+  //Close alarm screen
   const closeEndscreen = () => {
     setTimerFinished(false);
     setTimerActive(false);
@@ -109,9 +116,10 @@ const Page = () => {
 
   return (
     <>
+      {/* Nav component, handle clocktype */}
       <Nav typeCurrent={timerType} setType={setTimerType} />
 
-      <section className="w-screen min-h-screen flex flex-col justify-center items-center pb-20 bg-bg p-10">
+      <section className="w-screen min-h-screen flex flex-col justify-center items-center pb-40 bg-bg p-10">
         {!timerActive && !timerFinished && (
           <motion.section
             layout
@@ -173,12 +181,6 @@ const Page = () => {
             </motion.p>
 
             <section className="w-10/12 fixed bottom-20 py-20 flex flex-col gap-5">
-              <Toggles
-                text="Intervals"
-                active={isInterval}
-                onClick={setIsInterval}
-                delay={0.2}
-              />
               <Toggles
                 text="5 min break / interval"
                 active={isInterval}

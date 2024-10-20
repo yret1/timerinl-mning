@@ -70,3 +70,26 @@ body {
   left: 50%;
   transform: translateX(-50%);
 }
+
+
+.activecircle {
+  animation: Flashing 1s infinite;
+}
+.inactivecircle {
+  background-color: #46bfe8;
+  border: 1px solid black
+}
+
+
+@keyframes Flashing {
+
+  
+    0% {
+      background-color: #46bfe8;
+    }
+    100% {
+      background-color: #fcfbfb;
+    }
+  
+  
+}

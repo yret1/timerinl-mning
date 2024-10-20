@@ -89,6 +89,8 @@ const Text: React.FC<AnalogProps> = ({ secondsLeft }) => {
     const minuteWord = numberToSwedish(minutes);
     const secondWord = numberToSwedish(seconds);
 
+    //First thought was to set null, but it's better to return an empty string
+
     return `${minutes !== 0 ? minuteWord + " " + minuteText : ""} ${
       minutes == 0 || seconds == 0 ? "" : "och"
     } ${seconds > 0 ? secondWord + " " + secondText : ""} kvar. `;

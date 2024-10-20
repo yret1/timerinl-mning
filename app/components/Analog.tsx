@@ -10,6 +10,7 @@ const Analog: React.FC<AnalogProps> = ({ startMinutes, secondsLeft }) => {
   const [secondRotation, setSecondRotation] = useState<number>(0);
   const [minuteRotation, setMinuteRotation] = useState<number>(0);
   const prevSecondRotation = useRef<number>(0);
+
   useEffect(() => {
     const totalSeconds = startMinutes * 60;
     const elapsedSeconds = totalSeconds - secondsLeft;
