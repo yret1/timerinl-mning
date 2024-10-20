@@ -1,4 +1,4 @@
-## A Simple timer for schoolsubmission
+## A Simple timer for the course UX/UI Advancement
 
 ***Live Link : https://timerinl-mning.vercel.app/***
 
