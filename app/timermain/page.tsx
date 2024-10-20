@@ -24,6 +24,8 @@ const Page = () => {
   const [timeInSeconds, setTimeInSeconds] = useState<number>(minutes * 60);
   const [intervalTime, setIntervalTime] = useState<number>(5);
 
+  const [isRestart, setIsRestart] = useState<boolean>(false);
+
   //Start timer function
   const startTimer = useCallback(() => {
     if (timerActive) {
@@ -63,6 +65,17 @@ const Page = () => {
         setBreakActive(true);
         setTimerActive(false);
         setTimeInSeconds(intervalTime * 60);
+      } else if (isRestart) {
+        const playSound = () => {
+          const audio = new Audio("/pause.mp3");
+          audio.play();
+        };
+
+        playSound();
+
+        setTimerActive(true);
+        setBreakActive(false);
+        setTimeInSeconds(minutes * 60);
       } else {
         setTimerFinished(true);
         setTimerActive(false);
@@ -182,7 +195,13 @@ const Page = () => {
 
             <section className="w-10/12 fixed bottom-20 py-20 flex flex-col gap-5">
               <Toggles
-                text="5 min break / interval"
+                text="Interval"
+                active={isRestart}
+                onClick={setIsRestart}
+                delay={0.3}
+              />
+              <Toggles
+                text="5 min break"
                 active={isInterval}
                 onClick={setIsInterval}
                 delay={0.3}
