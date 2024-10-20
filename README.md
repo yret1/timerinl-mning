@@ -1,6 +1,6 @@
 ## A Simple timer for schoolsubmission
 
-*** Live Link : https://timerinl-mning.vercel.app/ ***
+***Live Link : https://timerinl-mning.vercel.app/***
 
 # Clock types
 
@@ -9,7 +9,7 @@
 - Text
 - Circles
 
-#Extra features
+# Extra features
 
 - 5 min break intervals
 - Repeating intevals
