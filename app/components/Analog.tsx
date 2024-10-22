@@ -47,7 +47,7 @@ const Analog: React.FC<AnalogProps> = ({ startMinutes, secondsLeft }) => {
             key={index}
             className="h-full flex absolute justify-center items-start"
           >
-            <div className="w-2 h-2 bg-primary rounded-full"></div>
+            <div className="w-1 h-2 bg-primary rounded-full"></div>
           </section>
         ))}
 

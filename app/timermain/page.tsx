@@ -23,7 +23,6 @@ const Page = () => {
   const [timerFinished, setTimerFinished] = useState<boolean>(false);
   const [timeInSeconds, setTimeInSeconds] = useState<number>(minutes * 60);
   const [intervalTime, setIntervalTime] = useState<number>(5);
-
   const [isRestart, setIsRestart] = useState<boolean>(false);
 
   //Start timer function
