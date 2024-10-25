@@ -25,7 +25,7 @@ const Circles = ({
         const isActive = index === startMinutes - minutes;
         const isFuture = index > startMinutes - minutes;
 
-        // Reversing zIndex
+        // Reversing zIndex to loop backwards
         const reversedZIndex = (startMinutes - index) * 2;
 
         return (
@@ -34,7 +34,7 @@ const Circles = ({
             id={index + "Circle"}
             className={`aspect-square rounded-full z-[${reversedZIndex}] absolute border-2 border-primary ${
               isCompleted ? "bg-[#93C5FD]" : ""
-            } ${isActive ? "activecircle" : ""} ${isFuture ? "bg-white" : ""}`} // Active circle gets 'activecircle animation', future circles stay white
+            } ${isActive ? "activecircle" : ""} ${isFuture ? "bg-white" : ""}`}
             style={{
               width: `${size}%`,
               zIndex: reversedZIndex, // Apply reversed zIndex

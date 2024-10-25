@@ -14,14 +14,20 @@ import Circles from "../components/Circles";
 const Page = () => {
   //States
   const [minutes, setMinutes] = useState<number>(5);
+  const [timeInSeconds, setTimeInSeconds] = useState<number>(minutes * 60);
+
   const [timerActive, setTimerActive] = useState<boolean>(false);
   const [isInterval, setIsInterval] = useState<boolean>(false);
   const [breakActive, setBreakActive] = useState<boolean>(false);
+
+  //Timer version
   const [timerType, setTimerType] = useState<
     "Analog" | "Digital" | "Text" | "Circle"
   >("Text");
+
+  //Is finsihed?
   const [timerFinished, setTimerFinished] = useState<boolean>(false);
-  const [timeInSeconds, setTimeInSeconds] = useState<number>(minutes * 60);
+
   const [intervalTime, setIntervalTime] = useState<number>(5);
   const [isRestart, setIsRestart] = useState<boolean>(false);
 
@@ -42,12 +48,17 @@ const Page = () => {
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
+    //Timer base logic
     if (timerActive && timeInSeconds > 0) {
       interval = setInterval(() => {
         setTimeInSeconds((prev) => prev - 1);
       }, 1000);
+
+      //Timer ending logic
     } else if (timeInSeconds === 0) {
+      //Is interval active?
       if (isInterval) {
+        //Is 5 min break selcted?
         if (breakActive && timeInSeconds === 0) {
           setBreakActive(false);
           setTimerActive(true);
@@ -64,7 +75,10 @@ const Page = () => {
         setBreakActive(true);
         setTimerActive(false);
         setTimeInSeconds(intervalTime * 60);
+
+        //If interval restart
       } else if (isRestart) {
+        //Play start stop sound
         const playSound = () => {
           const audio = new Audio("/pause.mp3");
           audio.play();
@@ -132,6 +146,7 @@ const Page = () => {
       <Nav typeCurrent={timerType} setType={setTimerType} />
 
       <section className="w-screen min-h-screen flex flex-col justify-center items-center pb-40 bg-bg p-10">
+        {/* If no timer show menu */}
         {!timerActive && !timerFinished && (
           <motion.section
             layout
@@ -163,7 +178,14 @@ const Page = () => {
                 animate={{ y: 0, opacity: 1 }}
                 className="text-primary font-sans text-7xl font-bold"
               >
-                {minutes}
+                <motion.p
+                  key={minutes}
+                  initial={{ scale: 1 }}
+                  animate={{ scale: [0.95, 1, 1.15, 1] }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                >
+                  {minutes}
+                </motion.p>
               </motion.p>
               <motion.svg
                 initial={{ x: 200 }}
@@ -208,6 +230,8 @@ const Page = () => {
             </section>
           </motion.section>
         )}
+
+        {/* Timer components */}
         {timerActive && timerType === "Analog" ? (
           <Analog secondsLeft={timeInSeconds} startMinutes={minutes} />
         ) : timerType === "Digital" && timerActive ? (
@@ -218,9 +242,11 @@ const Page = () => {
           <Circles secondsLeft={timeInSeconds} startMinutes={minutes} />
         ) : null}
 
+        {/* Finishscreen component */}
         {timerFinished && minutes !== 0 && (
           <Finishscreen close={closeEndscreen} />
         )}
+        {/* Finishscreen component */}
         {!timerFinished && breakActive && (
           <Breakscreen timeInSeconds={timeInSeconds} restart={startTimer} />
         )}

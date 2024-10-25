@@ -74,7 +74,7 @@ const Nav: React.FC<NavProps> = ({ setType, typeCurrent }) => {
         </svg>
       </button>
       <p className="text-primary font pt-2 px-5 font-bold text-2xl">
-        {typeCurrent.toLocaleUpperCase() + " CLOCK"}
+        {typeCurrent.toLocaleUpperCase() + " DISPLAY"}
       </p>
       <AnimatePresence>
         {isMenuOpen && (
