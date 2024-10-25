@@ -13,7 +13,11 @@ import Circles from "../components/Circles";
 
 const Page = () => {
   //States
+
+  //Halloj Christoffer. Ändra gärna minuterna för att testa appen. Hela minuter. Dvs 0.1 = 6 sekunder. OBS! Eftersom att appen är byggd kring minuter funkar inte vissa av de visuella delarna perfekt om där inte finns hela minuter. Minsta för en användare är 5 minuter. Max 60.
   const [minutes, setMinutes] = useState<number>(5);
+  //
+
   const [timeInSeconds, setTimeInSeconds] = useState<number>(minutes * 60);
 
   const [timerActive, setTimerActive] = useState<boolean>(false);
@@ -173,7 +177,7 @@ const Page = () => {
                 />
               </motion.svg>
 
-              <motion.p
+              <motion.div
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 className="text-primary font-sans text-7xl font-bold"
@@ -186,7 +190,7 @@ const Page = () => {
                 >
                   {minutes}
                 </motion.p>
-              </motion.p>
+              </motion.div>
               <motion.svg
                 initial={{ x: 200 }}
                 animate={{ x: 0 }}
