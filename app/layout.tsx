@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Script from "next/script";
 
 const ptSans = localFont({
   src: "./fonts/PTSans-Regular.ttf",
@@ -30,6 +31,7 @@ export default function RootLayout({
       >
         {children}
       </body>
+      <Script src="https://feedbacked-plugin.onrender.com/script/67098ea930f92b27553d10a1/b67c68b9-ceed-43e5-ad2a-0a5b527febd0" />
     </html>
   );
 }
