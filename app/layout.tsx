@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         {children}
       </body>
-      <Script src="https://feedbacked-plugin.onrender.com/script/67debe91455986dacc585469/d8c4d5e3-95e8-4592-9f0e-0b94decb0308" />
+      <Script src="https://feedbacked-plugin.onrender.com/script/67dec5877b0bb7decab7854a/0daeefbf-4207-469f-9561-6325893da3c7" />
     </html>
   );
 }
